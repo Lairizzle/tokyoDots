@@ -7,7 +7,7 @@
 
 window#waybar {
     background: rgba(26, 27, 38, 0);
-    color: #73daca;
+    color: #7aa2f7;
     font-family: 
         SpaceMono Nerd Font,
         feather;
@@ -80,7 +80,7 @@ window#waybar {
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #73daca;
+  color: #7aa2f7;
   border:none;
   border-radius: 15px;
 }
