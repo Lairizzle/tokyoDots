@@ -108,6 +108,7 @@ window#waybar {
 #tray menu {
     background-color: rgba(26, 27, 38, 1);
 		border: 2px solid;
+		border-radius: 0px;
 		border-color: #7dcfff;
     color: @background;
 }

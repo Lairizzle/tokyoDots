@@ -4,8 +4,6 @@
         "tooltip": true,
         "tooltip-format": "btw"
     },
-
-
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -49,7 +47,6 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
 	"on-click": "sh ~/scripts/rofi-wifi-menu/rofi-wifi-menu.sh"
-	 
     },
     "cpu": {
         "format": "  {usage}%",

@@ -20,7 +20,6 @@
         "cpu",
         "memory",
         "temperature",
-        "hyprland/language",
         "battery",
         "battery#bat2",
         "tray",
