@@ -181,6 +181,8 @@ return {
       'stylua',
       'google-java-format',
       'black',
+      'csharpier',
+      'prettierd',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
