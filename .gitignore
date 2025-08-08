@@ -4,6 +4,7 @@
 # Files to not ignore
 !/.gitignore
 !/some_other_files
+!/starship.toml
 
 # Folder to not ignore
 !/btop/

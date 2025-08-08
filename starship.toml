@@ -1,0 +1,77 @@
+# Starship config - Tokyo Night pastel powerline arrow transitions
+format = """
+[](#1a1b26)\
+$username[](bg:#24283b fg:#1a1b26)\
+$hostname[](bg:#3b4261 fg:#24283b)\
+$directory[](bg:#565f89 fg:#3b4261)\
+$git_branch$git_status[](bg:#1a1b26 fg:#565f89)\
+$nodejs$python$rust$golang$php[](bg:#1f2233 fg:#1a1b26)\
+$time[](#1f2233)\
+\n\
+[└──](#1a1b26 bold #7aa2f7) $character
+"""
+
+[character]
+success_symbol = "[❯](bold #7aa2f7)"
+error_symbol = "[❯](bold #f7768e)"
+vicmd_symbol = "[❮](bold #7dcfff)"
+
+[username]
+show_always = true
+style_user = "bg:#1a1b26 bold #bb9af7"
+style_root = "bg:#1a1b26 bold #f7768e"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "bg:#24283b bold #7dcfff"
+format = "[$hostname]($style)"
+
+[directory]
+style = "bg:#3b4261 bold #7aa2f7"
+read_only = " "
+read_only_style = "bold #f7768e"
+truncation_length = 3
+truncation_symbol = "…/"
+format = "[$path]($style)"
+
+[git_branch]
+symbol = " "
+style = "bg:#565f89 bold #9ece6a"
+format = "[$symbol$branch]($style)"
+
+[git_status]
+style = "bg:#565f89 bold #e0af68"
+format = '([$all_status$ahead_behind]($style))'
+
+[nodejs]
+symbol = " "
+style = "bg:#1a1b26 bold #e0af68"
+format = "[$symbol$version]($style)"
+
+[python]
+symbol = " "
+style = "bg:#1a1b26 bold #f7768e"
+format = "[$symbol$version]($style)"
+
+[rust]
+symbol = " "
+style = "bg:#1a1b26 bold #ff9e64"
+format = "[$symbol$version]($style)"
+
+[golang]
+symbol = " "
+style = "bg:#1a1b26 bold #7dcfff"
+format = "[$symbol$version]($style)"
+
+[php]
+symbol = " "
+style = "bg:#1a1b26 bold #bb9af7"
+format = "[$symbol$version]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:#1f2233 bold #73daca"
+format = "[ $time]($style)"
+
