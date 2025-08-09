@@ -9,6 +9,7 @@
 # Folder to not ignore
 !/btop/
 !/dunst/
+!/fastfetch/
 !/hypr/
 !/kitty/
 !/mc/
