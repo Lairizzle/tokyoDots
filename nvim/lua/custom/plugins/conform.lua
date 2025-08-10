@@ -14,6 +14,7 @@ return { -- Autoformat
   },
   opts = {
     notify_on_error = false,
+    stop_after_first = true,
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
@@ -34,6 +35,15 @@ return { -- Autoformat
       java = { 'google-java-format' },
       python = { 'black' },
       cs = { 'csharpier' },
+    },
+    formatters = {
+      csharpier = {
+        command = 'csharpier', -- Note the hyphen
+        args = {
+          'format',
+        },
+        to_stdin = true,
+      },
     },
   },
 }

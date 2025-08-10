@@ -100,7 +100,7 @@ return { -- Autocompletion
         border = 'rounded',
         winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None',
         treesitter_highlighting = true,
-        show_documentation = false,
+        show_documentation = true,
       },
     },
   },

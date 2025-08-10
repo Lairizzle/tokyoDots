@@ -159,7 +159,12 @@ return {
     -- Enable the following language servers
     local servers = {
       clangd = {},
-      csharp_ls = {},
+      csharp_ls = {
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          -- your other on_attach logic...
+        end,
+      },
       pyright = {},
       lua_ls = {
         -- cmd = { ... },
@@ -183,7 +188,7 @@ return {
       'stylua',
       'google-java-format',
       'black',
-      'csharpier',
+      'csharp_ls',
       'prettierd',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
