@@ -159,6 +159,7 @@ return {
     -- Enable the following language servers
     local servers = {
       clangd = {},
+      csharp_ls = {},
       pyright = {},
       lua_ls = {
         -- cmd = { ... },
