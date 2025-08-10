@@ -88,11 +88,19 @@ return { -- Autocompletion
 
     -- Shows a signature help window while you type arguments for a function
     signature = {
+      enabled = true,
+      trigger = {
+        enabled = true,
+        show_on_keyword = false,
+        show_on_trigger_character = false,
+        show_on_insert = false,
+        show_on_insert_on_trigger_character = false,
+      },
       window = {
         border = 'rounded',
         winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None',
         treesitter_highlighting = true,
-        show_documentation = true,
+        show_documentation = false,
       },
     },
   },

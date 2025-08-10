@@ -33,6 +33,7 @@ return { -- Autoformat
       cpp = { 'clang-format' },
       java = { 'google-java-format' },
       python = { 'black' },
+      cs = { 'csharpier' },
     },
   },
 }

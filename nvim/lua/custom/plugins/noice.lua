@@ -27,7 +27,7 @@ return {
     lsp = {
       signature = {
         enabled = false, -- <- this fully disables LSP signature popups from noice
-        auto_open = { enabled = false },
+        auto_open = { enabled = true },
       },
     },
     -- add any options here
