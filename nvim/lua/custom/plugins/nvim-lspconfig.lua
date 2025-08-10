@@ -159,12 +159,7 @@ return {
     -- Enable the following language servers
     local servers = {
       clangd = {},
-      csharp_ls = {
-        on_attach = function(client, bufnr)
-          client.server_capabilities.documentFormattingProvider = false
-          -- your other on_attach logic...
-        end,
-      },
+      csharp_ls = {},
       pyright = {},
       lua_ls = {
         -- cmd = { ... },
