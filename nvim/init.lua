@@ -95,6 +95,10 @@ vim.o.confirm = true
 
 -- [[ KEYMAPS ]]
 --  See `:help vim.keymap.set()`
+--  Shortcut to run dotnet apps in cli
+vim.keymap.set('n', '<leader>r', function()
+  vim.cmd 'terminal dotnet run program'
+end, { desc = 'Run dotnet program in terminal buffer' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
