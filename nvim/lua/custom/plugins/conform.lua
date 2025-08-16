@@ -35,6 +35,7 @@ return { -- Autoformat
       java = { 'google-java-format' },
       python = { 'black' },
       cs = { 'csharpier' },
+      axaml = { 'xmlformatter' },
     },
     formatters = {
       csharpier = {
