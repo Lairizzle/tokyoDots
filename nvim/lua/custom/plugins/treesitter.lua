@@ -17,6 +17,7 @@ return { -- Highlight, edit, and navigate code
       'markdown_inline',
       'python',
       'query',
+      'rust',
       'vim',
       'vimdoc',
     },
