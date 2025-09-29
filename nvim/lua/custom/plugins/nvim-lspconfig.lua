@@ -162,21 +162,23 @@ return {
       csharp_ls = {},
       pyright = {},
       lua_ls = {
-        -- cmd = { ... },
-        -- filetypes = { ... },
-        -- capabilities = {},
         settings = {
           Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            completion = { callSnippet = 'Replace' },
             diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
+      rust_analyzer = {
+        settings = {
+          ['rust-analyzer'] = {
+            diagnostics = { enable = true }, -- keep real errors/warnings
+            semanticHighlighting = false, -- disable fake "spellcheck" highlights
+            checkOnSave = { command = 'clippy' }, -- optional, but common
+          },
+        },
+      },
     }
-
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'clang-format',
