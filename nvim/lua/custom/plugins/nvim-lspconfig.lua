@@ -169,15 +169,6 @@ return {
           },
         },
       },
-      rust_analyzer = {
-        settings = {
-          ['rust-analyzer'] = {
-            diagnostics = { enable = true }, -- keep real errors/warnings
-            semanticHighlighting = false, -- disable fake "spellcheck" highlights
-            checkOnSave = { command = 'clippy' }, -- optional, but common
-          },
-        },
-      },
     }
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
@@ -194,9 +185,12 @@ return {
       ensure_installed = {}, -- explicitly set to an empty table
       automatic_installation = false,
       --Exclude jdtls to avoid conflicts with nvim-jdtls
-      automatic_enable = { exclude = { 'jdtls' } },
+      automatic_enable = { exclude = { 'jdtls', 'rust_analyzer' } },
       handlers = {
         function(server_name)
+          if server_name == 'rust-analyzer' then
+            return
+          end
           local server = servers[server_name] or {}
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling

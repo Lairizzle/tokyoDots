@@ -95,14 +95,4 @@ return {
       end
     end,
   },
-
-  -- Rustaceanvim
-  {
-    'mrcjkb/rustaceanvim',
-    dependencies = { 'mfussenegger/nvim-dap' }, -- ensure dap loads first
-    lazy = false,
-    config = function()
-      require('rust-tools').setup()
-    end,
-  },
 }
