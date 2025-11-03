@@ -76,6 +76,7 @@ vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 --Set tab width
+vim.opt['expandtab'] = true
 vim.opt['tabstop'] = 2
 vim.opt['shiftwidth'] = 2
 
