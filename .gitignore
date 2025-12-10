@@ -1,0 +1,20 @@
+# Ignore everything in repository root 
+/*
+
+# Files to not ignore
+!/.gitignore
+!/some_other_files
+!/starship.toml
+
+# Folder to not ignore
+!/btop/
+!/dunst/
+!/fastfetch/
+!/hypr/
+!/kitty/
+!/mc/
+!/lazynvim/
+!/nvim/
+!/rofi/
+!/wallpapers/
+!/waybar/
