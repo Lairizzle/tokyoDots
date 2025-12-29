@@ -108,6 +108,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Shortcut to leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>')
 
+--Shortcut to add semi-colon at eol
+vim.keymap.set('n', '<leader>el', 'A;<Esc>', { noremap = true, silent = true })
+
 -- Activate Code Actions
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 
