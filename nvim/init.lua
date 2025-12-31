@@ -111,6 +111,23 @@ vim.keymap.set('i', 'jk', '<ESC>')
 --Shortcut to add semi-colon at eol
 vim.keymap.set('n', '<leader>el', 'A;<Esc>', { noremap = true, silent = true })
 
+-- Start recording macro into register 'a' when pressing <leader>ms
+local recording = false
+
+vim.keymap.set('n', '<leader>ms', function()
+  if not recording then
+    -- start recording into register 'a'
+    vim.cmd 'normal! qa'
+    recording = true
+    print "Macro recording started in register 'a'"
+  else
+    -- stop recording
+    vim.cmd 'normal! q'
+    recording = false
+    print 'Macro recording stopped'
+  end
+end, { noremap = true, silent = false })
+
 -- Activate Code Actions
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 
