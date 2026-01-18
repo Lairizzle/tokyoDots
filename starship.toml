@@ -1,0 +1,66 @@
+format = """
+[█](#1e1f28)\
+$username @[](bg:#292e48 fg:#1e1f28)\
+$hostname[](bg:#404b6d fg:#292e48)\
+$directory[](bg:#575f89 fg:#404b6d)\
+$git_branch$git_status[](bg:#1e1f28 fg:#575f89)\
+$nodejs$python$rust$golang$php[](bg:#1e1f28 fg:#1e1f28)\
+$time[](#1e1f28)\
+\n\
+[└──](#1e1f28 bold #7aa2f7) $character
+"""
+
+[character]
+success_symbol = "[❯](bold #7aa2f7)"
+error_symbol = "[❯](bold #f7768e)"
+vicmd_symbol = "[❮](bold #7dcfff)"
+
+[username]
+show_always = true
+style_user = "bg:#1e1f28 bold #bb9af7"
+style_root = "bg:#1e1f28 bold #f7768e"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "bg:#292e48 bold #7dcfff"
+format = "[$hostname]($style)"
+
+[directory]
+style = "bg:#404b6d bold #7aa2f7"
+read_only = " "
+read_only_style = "bold #f7768e"
+truncation_length = 3
+truncation_symbol = "…/"
+format = "[$path]($style)"
+
+[git_branch]
+symbol = " "
+style = "bg:#575f89 bold #9ece6a"
+format = "[$symbol$branch]($style)"
+
+[git_status]
+style = "bg:#575f89 bold #e0af68"
+format = '([$all_status$ahead_behind]($style))'
+
+[dotnet]
+symbol = " "            # You can also use "" or "" if you prefer
+style = "bg:#1e1f28 bold #a3be8c"
+format = "[$symbol$version]($style)"
+
+[nodejs]
+symbol = " "
+style = "bg:#1e1f28 bold #e0af68"
+format = "[$symbol$version]($style)"
+
+[python]
+symbol = " "
+style = "bg:#1e1f28 bold #f7768e"
+format = "[$symbol$version]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:#1e1f28 bold #73daca"
+format = "[ $time]($style)"
+
