@@ -14,34 +14,21 @@ return { -- Autoformat
   },
   opts = {
     notify_on_error = false,
-    stop_after_first = true,
     format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = false }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 500,
-          lsp_format = 'fallback',
-        }
+      -- Disable autoformat for C# files to use CSharpier exclusively
+      if vim.bo[bufnr].filetype == 'cs' then
+        return { timeout_ms = 500, lsp_format = false }
       end
+      -- Fallback to LSP formatting for other filetypes
+      return {
+        timeout_ms = 500,
+        lsp_format = 'fallback',
+      }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'black' },
       cs = { 'csharpier' },
-    },
-    formatters = {
-      csharpier = {
-        command = 'csharpier', -- Note the hyphen
-        args = {
-          'format',
-        },
-        to_stdin = true,
-      },
     },
   },
 }

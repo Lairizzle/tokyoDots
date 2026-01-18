@@ -1,228 +1,182 @@
---[[ RIZZ INIT
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
---]]
+--[[ NEOVIM CONFIGURATION ]]
 
---[[ SET LEADER ]]
--- Set <space> as the leader key
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- ============================================================================
+-- ENVIRONMENT SETUP
+-- ============================================================================
+vim.env.DOTNET_ROOT = '/usr/share/dotnet'
+vim.env.PATH = vim.env.DOTNET_ROOT .. ':' .. vim.env.PATH:gsub('~', vim.fn.expand '~')
+
+-- ============================================================================
+-- LEADER KEYS
+-- ============================================================================
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
---[[ FLOATING WINDOW OPTIONS ]]
--- Adjust background overlap of borders
-vim.o.winborder = 'none'
+-- ============================================================================
+-- OPTIONS
+-- ============================================================================
+local opt = vim.opt
+
+-- UI
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = 'yes'
+opt.cursorline = true
+opt.showmode = false
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Editing
+opt.mouse = 'a'
+opt.breakindent = true
+opt.undofile = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.inccommand = 'split'
+opt.scrolloff = 10
+opt.confirm = true
+
+-- Indentation
+opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+
+-- Timing
+opt.updatetime = 250
+opt.timeoutlen = 300
+
+-- Splits
+opt.splitright = true
+opt.splitbelow = true
+
+-- Clipboard (scheduled to reduce startup time)
+vim.schedule(function()
+  opt.clipboard = 'unnamedplus'
+end)
+
+-- Floating windows
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'NONE', fg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE', fg = 'NONE' })
 
--- [[ OPTIONS ]]
--- See `:help vim.o`
--- For more options, you can see `:help option-list`
+-- ============================================================================
+-- KEYMAPS
+-- ============================================================================
+local keymap = vim.keymap.set
 
--- Make line numbers default
-vim.o.number = true
-vim.o.relativenumber = true
+-- General
+keymap('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
+keymap('i', 'jk', '<ESC>', { desc = 'Exit insert mode' })
+keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Enable mouse mode
-vim.o.mouse = 'a'
+-- Editing helpers
+keymap('n', '<leader>el', 'A;<Esc>', { desc = 'Add semicolon at end of line' })
 
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+-- Window navigation
+keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Move to left window' })
+keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Move to right window' })
+keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move to lower window' })
+keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move to upper window' })
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+-- Buffer navigation
+keymap({ 'n', 'v' }, '<tab>', ':BufferLineCycleNext<CR>', { desc = 'Next buffer' })
 
--- Enable break indent
-vim.o.breakindent = true
+-- LSP
+keymap('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
+keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic quickfix list' })
 
--- Save undo history
-vim.o.undofile = true
+-- Debugging
+keymap('n', '<leader>db', '<cmd>DapToggleBreakpoint<CR>', { desc = 'Toggle breakpoint' })
+keymap('n', '<leader>dr', '<cmd>DapContinue<CR>', { desc = 'Start/continue debugger' })
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
--- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
---Set tab width
-vim.opt['expandtab'] = true
-vim.opt['tabstop'] = 2
-vim.opt['shiftwidth'] = 2
-
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.o.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.o.confirm = true
-
--- [[ KEYMAPS ]]
---  See `:help vim.keymap.set()`
---  Shortcut to run dotnet apps in cli
-vim.keymap.set('n', '<leader>r', function()
+-- Dotnet
+keymap('n', '<leader>r', function()
   vim.cmd 'terminal dotnet run program'
-end, { desc = 'Run dotnet program in terminal buffer' })
+end, { desc = 'Run dotnet program' })
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Shortcut to leave insert mode
-vim.keymap.set('i', 'jk', '<ESC>')
-
---Shortcut to add semi-colon at eol
-vim.keymap.set('n', '<leader>el', 'A;<Esc>', { noremap = true, silent = true })
-
--- Start recording macro into register 'a' when pressing <leader>ms
+-- Macro recording toggle
 local recording = false
-
-vim.keymap.set('n', '<leader>ms', function()
+keymap('n', '<leader>ms', function()
   if not recording then
-    -- start recording into register 'a'
     vim.cmd 'normal! qa'
     recording = true
     print "Macro recording started in register 'a'"
   else
-    -- stop recording
     vim.cmd 'normal! q'
     recording = false
     print 'Macro recording stopped'
   end
-end, { noremap = true, silent = false })
+end, { desc = 'Toggle macro recording (register a)' })
 
--- Activate Code Actions
-vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+-- ============================================================================
+-- AUTOCOMMANDS
+-- ============================================================================
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
--- Enable TAB as way to switch buffers
-vim.keymap.set({ 'n', 'v' }, '<tab>', ':BufferLineCycleNext<CR>')
-
--- Debugging shortcuts
-vim.keymap.set('n', '<leader>db', '<cmd> DapToggleBreakpoint <CR>', { desc = 'Add breakpoint at line.' })
-vim.keymap.set('n', '<leader>dr', '<cmd> DapContinue <CR>', { desc = 'Start or continue the debugger.' })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
--- [[ AUTOCOMMANDS ]]
---  See `:help lua-guide-autocommands`
---
--- Highlight when yanking (copying) text
---  See `:help vim.hl.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+-- Highlight on yank
+autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  group = augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+-- AXAML filetype detection
+autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.axaml',
   command = 'set filetype=axaml',
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
+-- Disable semantic tokens (if needed for performance)
+autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
   end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- ============================================================================
+-- PLUGIN MANAGER (lazy.nvim)
+-- ============================================================================
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
-  if vim.v.shell_error ~= 0 then
-    error('Error cloning lazy.nvim:\n' .. out)
-  end
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    '--branch=stable',
+    'https://github.com/folke/lazy.nvim.git',
+    lazypath,
+  }
 end
+vim.opt.rtp:prepend(lazypath)
 
----@type vim.Option
-local rtp = vim.opt.rtp
-rtp:prepend(lazypath)
-
--- [[ PLUGIN SETUP ]]
+-- ============================================================================
+-- PLUGINS
+-- ============================================================================
 require('lazy').setup({
-  -- [[ NVIM COLOUR THEME ]] --
+  -- Colorscheme
   {
     'folke/tokyonight.nvim',
-    --'ellisonleao/gruvbox.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 1000,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
         styles = {
-          comments = { italic = false }, -- Disable italics in comments
+          comments = { italic = false },
         },
       }
-
-      -- Load the colorscheme here.
       vim.cmd.colorscheme 'tokyonight'
     end,
   },
 
+  -- Custom plugins
   { import = 'custom.plugins' },
 }, {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
@@ -240,6 +194,3 @@ require('lazy').setup({
     },
   },
 })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
