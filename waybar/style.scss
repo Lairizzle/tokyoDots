@@ -1,19 +1,19 @@
 // ========================
 // Colors (Global Variables)
 // ========================
-$background       : #271224;
-$background-alt   : #291E37;
+$background       : #271224; // Main dark
+$background-alt   : #291E37; // Slightly lighter
 
-$foreground       : #6391D8;
-$foreground-dim   : #4E4A89;
+$foreground       : #C0CAF5; // Main text
+$foreground-dim   : #9A8FEF; // Muted text / secondary
 
-$accent-primary   : #6391D8;
-$accent-secondary : #493961;
-$accent-muted     : #3D355F;
+$accent-primary   : #7DCFFF; // Bright cyan
+$accent-secondary : #493961; // Purple accent
+$accent-muted     : #3D355F; // Dark muted purple
 
-$purple-dark      : #493961;
+$purple-dark      : #BB9AF7; // Keywords
 $indigo-shadow    : #3D355F;
-$plum-black       : #3B2A46;
+$plum-black       : #3B2A46; 
 $deep-maroon      : #361B30;
 
 // ========================
@@ -26,13 +26,13 @@ $deep-maroon      : #361B30;
 }
 
 // ========================
-// Main Waybar container
+// Main Waybar container (transparent)
 // ========================
 window#waybar {
-  background: rgba(39, 18, 36, 0); // slight transparency
+  background: transparent; // DO NOT paint the entire bar
   color: $foreground;
   font-family: "SpaceMono Nerd Font", feather;
-  transition: background-color .5s, color .3s, border-radius .3s ease;
+  transition: color .3s, border-radius .3s ease;
   border-radius: 6px;
   padding: 2px 5px;
 }
@@ -43,7 +43,7 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-  background: rgba(41, 30, 55, 0.6); // semi-transparent alt background
+  background: rgba($background-alt, 0.6); // semi-transparent per-module
   border: 2px solid rgba($accent-primary, 0.4);
   border-radius: 6px;
   margin: 0 5px;
@@ -102,6 +102,7 @@ window#waybar {
 #language:hover,
 #mpd:hover {
   background: rgba($accent-secondary, 0.9);
+  color: $foreground;
 }
 
 // ========================
@@ -120,12 +121,13 @@ window#waybar {
 
 #workspaces button.active {
   background: rgba($accent-secondary, 0.9);
+  color: $accent-primary;
 }
 
 #workspaces button:hover {
   background: rgba($accent-secondary, 0.9);
   color: $accent-primary;
-  box-shadow: 0 0 2px rgba($accent-primary, 0);
+  box-shadow: 0 0 2px rgba($accent-primary, 0.5);
 }
 
 // ========================
@@ -160,4 +162,3 @@ window#waybar {
   border-radius: 6px;
   color: $foreground;
 }
-

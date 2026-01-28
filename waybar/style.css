@@ -5,10 +5,10 @@
 }
 
 window#waybar {
-  background: rgba(39, 18, 36, 0);
-  color: #6391D8;
+  background: transparent;
+  color: #C0CAF5;
   font-family: "SpaceMono Nerd Font", feather;
-  transition: background-color 0.5s, color 0.3s, border-radius 0.3s ease;
+  transition: color 0.3s, border-radius 0.3s ease;
   border-radius: 6px;
   padding: 2px 5px;
 }
@@ -17,7 +17,7 @@ window#waybar {
 .modules-center,
 .modules-right {
   background: rgba(41, 30, 55, 0.6);
-  border: 2px solid rgba(99, 145, 216, 0.4);
+  border: 2px solid rgba(125, 207, 255, 0.4);
   border-radius: 6px;
   margin: 0 5px;
 }
@@ -71,13 +71,14 @@ window#waybar {
 #language:hover,
 #mpd:hover {
   background: rgba(73, 57, 97, 0.9);
+  color: #C0CAF5;
 }
 
 #workspaces button {
   background: transparent;
   font-family: "SpaceMono Nerd Font", feather;
   font-weight: 400;
-  color: #6391D8;
+  color: #C0CAF5;
   border: none;
   padding: 0 8px;
   margin: 0 1px 1px;
@@ -86,12 +87,13 @@ window#waybar {
 
 #workspaces button.active {
   background: rgba(73, 57, 97, 0.9);
+  color: #7DCFFF;
 }
 
 #workspaces button:hover {
   background: rgba(73, 57, 97, 0.9);
-  color: #6391D8;
-  box-shadow: 0 0 2px rgba(99, 145, 216, 0);
+  color: #7DCFFF;
+  box-shadow: 0 0 2px rgba(125, 207, 255, 0.5);
 }
 
 #custom-arch {
@@ -102,14 +104,14 @@ window#waybar {
 }
 
 #custom-arch:hover {
-  color: #6391D8;
+  color: #7DCFFF;
 }
 
 #tray menu {
   background-color: rgba(41, 30, 55, 0.9);
-  border: 2px solid rgba(99, 145, 216, 0.4);
+  border: 2px solid rgba(125, 207, 255, 0.4);
   border-radius: 6px;
-  color: #6391D8;
+  color: #C0CAF5;
 }
 
 #tray menu *:hover {
@@ -118,7 +120,7 @@ window#waybar {
   margin-left: 2px;
   margin-right: 2px;
   border-radius: 6px;
-  color: #6391D8;
+  color: #C0CAF5;
 }
 
 /*# sourceMappingURL=style.css.map */
