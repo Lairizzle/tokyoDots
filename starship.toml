@@ -1,66 +1,65 @@
 format = """
 [█](#271224)\
 $username @[](bg:#291E37 fg:#271224)\
-$hostname[](bg:#4E4A89 fg:#291E37)\
-$directory[](bg:#493961 fg:#4E4A89)\
-$git_branch$git_status[](bg:#271224 fg:#493961)\
+$hostname[](bg:#493961 fg:#291E37)\
+$directory[](bg:#4E4A89 fg:#493961)\
+$git_branch$git_status[](bg:#271224 fg:#4E4A89)\
 $nodejs$python$rust$golang$php[](bg:#271224 fg:#271224)\
 $time[](#271224)\
 \n\
-[└──](#271224 bold #6391D8) $character
+[└──](#271224 bold #6F8DFF) $character
 """
 
 [character]
-success_symbol = "[❯](bold #6391D8)"
-error_symbol   = "[❯](bold #f7768e)"   # keep red for errors
-vicmd_symbol   = "[❮](bold #73daca)"
+success_symbol = "[❯](bold #6F8DFF)"        # Bright blue for success
+error_symbol   = "[❯](bold #F7768E)"        # Keep red for errors
+vicmd_symbol   = "[❮](bold #73DACA)"        # Cyan for vi mode
 
 [username]
 show_always = true
-style_user = "bg:#271224 bold #6391D8"
-style_root = "bg:#271224 bold #f7768e"
+style_user = "bg:#271224 bold #6F8DFF"      # Bright blue for normal user
+style_root = "bg:#271224 bold #F7768E"      # Red for root
 format = "[$user]($style)"
 
 [hostname]
 ssh_only = false
-style = "bg:#291E37 bold #73daca"
+style = "bg:#291E37 bold #73DACA"           # Teal/cyan for hostname
 format = "[$hostname]($style)"
 
 [directory]
-style = "bg:#4E4A89 bold #6391D8"
+style = "bg:#493961 bold #9A8FEF"    # Darker muted purple for directory
 read_only = " "
-read_only_style = "bold #f7768e"
+read_only_style = "bold #F7768E"      # Keep red for readonly
 truncation_length = 3
 truncation_symbol = "…/"
 format = "[$path]($style)"
 
 [git_branch]
 symbol = " "
-style = "bg:#493961 bold #6391D8"
+style = "bg:#493961 bold #BB9AF7"           # Purple branch background
 format = "[$symbol$branch]($style)"
 
 [git_status]
-style = "bg:#3D355F bold #e0af68"
+style = "bg:#3D355F bold #E0AF68"           # Muted purple bg, yellow for status
 format = '([$all_status$ahead_behind]($style))'
 
 [dotnet]
 symbol = " "
-style = "bg:#271224 bold #73daca"
+style = "bg:#271224 bold #73DACA"
 format = "[$symbol$version]($style)"
 
 [nodejs]
 symbol = " "
-style = "bg:#271224 bold #e0af68"
+style = "bg:#271224 bold #E0AF68"
 format = "[$symbol$version]($style)"
 
 [python]
 symbol = " "
-style = "bg:#271224 bold #f7768e"
+style = "bg:#271224 bold #F7768E"
 format = "[$symbol$version]($style)"
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "bg:#271224 bold #73daca"
+style = "bg:#271224 bold #73DACA"
 format = "[ $time]($style)"
-

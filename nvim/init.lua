@@ -158,10 +158,17 @@ vim.opt.rtp:prepend(lazypath)
 -- PLUGINS
 -- ============================================================================
 -- load your theme first
-require('custom.themes.midnight-crystal').setup()
+--require('custom.themes.midnight-crystal').setup()
 
 require('lazy').setup({
-
+  {
+    'lairizzle/midnight-crystal',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('midnight-crystal').setup()
+    end,
+  },
   -- Custom plugins
   { import = 'custom.plugins' },
 }, {
