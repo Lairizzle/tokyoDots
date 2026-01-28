@@ -154,24 +154,13 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- ============================================================================
 -- PLUGINS
 -- ============================================================================
+-- load your theme first
+require('custom.themes.cyberpunktheme').setup()
+
 require('lazy').setup({
-  -- Colorscheme
-  {
-    'folke/tokyonight.nvim',
-    priority = 1000,
-    config = function()
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false },
-        },
-      }
-      vim.cmd.colorscheme 'tokyonight'
-    end,
-  },
 
   -- Custom plugins
   { import = 'custom.plugins' },
