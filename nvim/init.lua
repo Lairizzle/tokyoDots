@@ -158,7 +158,7 @@ vim.opt.rtp:prepend(lazypath)
 -- PLUGINS
 -- ============================================================================
 -- load your theme first
-require('custom.themes.cyberpunktheme').setup()
+require('custom.themes.midnight-crystal').setup()
 
 require('lazy').setup({
 
