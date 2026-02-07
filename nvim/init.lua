@@ -24,7 +24,7 @@ opt.relativenumber = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
 opt.showmode = false
-opt.list = true
+opt.list = false
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Editing
@@ -39,8 +39,9 @@ opt.confirm = true
 
 -- Indentation
 opt.expandtab = true
-opt.tabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
 
 -- Timing
 opt.updatetime = 250
@@ -157,9 +158,6 @@ vim.opt.rtp:prepend(lazypath)
 -- ============================================================================
 -- PLUGINS
 -- ============================================================================
--- load your theme first
---require('custom.themes.midnight-crystal').setup()
-
 require('lazy').setup({
   {
     'lairizzle/midnight-crystal',
