@@ -167,6 +167,15 @@ return {
       -- Python Language Server
       pyright = {},
 
+      -- Rust LSP
+      rust_analyzer = {
+        settings = {
+          rustanalyzer = {
+            checkOnSave = { command = 'check' },
+          },
+        },
+      },
+
       -- Lua Language Server (configured for Neovim development)
       lua_ls = {
         settings = {
