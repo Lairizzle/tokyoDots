@@ -38,7 +38,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "kitty -e wiremix"
     },
     "network": {
         "format-wifi": "   {essid} ({signalStrength}%)",
