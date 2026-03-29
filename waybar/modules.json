@@ -2,6 +2,7 @@
     "custom/arch": {
         "format": "󰣇",
         "tooltip": true,
+        "on-click": "swaync-client -t",
         "tooltip-format": "btw"
     },
     "hyprland/workspaces": {
