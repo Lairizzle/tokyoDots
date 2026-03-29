@@ -23,7 +23,8 @@
         "battery",
         "battery#bat2",
         "tray",
-        "clock"
+        "custom/power",
+        "clock",
     ],
     //Modules configuration
 

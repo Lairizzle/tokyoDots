@@ -30,6 +30,7 @@ window#waybar {
   padding: 0 10px;
 }
 
+#custom-power,
 #clock,
 #battery,
 #cpu,
@@ -52,6 +53,7 @@ window#waybar {
   border-radius: 6px;
 }
 
+#custom-power:hover,
 #clock:hover,
 #battery:hover,
 #cpu:hover,

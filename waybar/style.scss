@@ -60,6 +60,7 @@ window#waybar {
 // ========================
 // Module items
 // ========================
+#custom-power,
 #clock,
 #battery,
 #cpu,
@@ -83,6 +84,7 @@ window#waybar {
 }
 
 // Hover effect for modules
+#custom-power:hover,
 #clock:hover,
 #battery:hover,
 #cpu:hover,

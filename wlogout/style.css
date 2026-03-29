@@ -1,0 +1,61 @@
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+/* Main overlay background */
+window {
+	background-color: rgba(39, 18, 36, 0.85); /* #271224 with opacity */
+}
+
+/* Buttons (idle state) */
+button {
+	border-radius: 6px;
+	border: 1px solid #7dcfff;
+	color: #c0caf5;
+
+	background-color: rgba(59, 42, 70, 0.85); /* #3B2A46 */
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+
+	transition: all 0.2s ease;
+}
+
+/* Hover / focus / active */
+button:focus,
+button:active,
+button:hover {
+	background-color: rgba(73, 57, 97, 0.9); /* #493961 */
+	color: #7dcfff;
+	outline: none;
+}
+
+/* Optional: subtle visual depth */
+button:hover {
+	box-shadow: 0 0 6px rgba(125, 207, 255, 0.25);
+}
+
+#lock {
+    background-image: url("/home/keith/.config/wlogout/icons/lock.svg");
+}
+
+#logout {
+    background-image: url("/home/keith/.config/wlogout/icons/logout.svg");
+}
+
+#suspend {
+    background-image: url("/home/keith/.config/wlogout/icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("/home/keith/.config/wlogout/icons/hibernate.svg");
+}
+
+#shutdown {
+    background-image: url("/home/keith/.config/wlogout/icons/shutdown.svg");
+}
+
+#reboot {
+    background-image: url("/home/keith/.config/wlogout/icons/reboot.svg");
+}
