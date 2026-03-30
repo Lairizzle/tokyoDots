@@ -1,141 +1,163 @@
 /* ============================================================================
-   Midnight Crystal – Kitty Matched + Glass + Cyan/Teal Accents
+   Midnight Crystal – Clean Glass + Cyan/Teal Accents
    ============================================================================ */
 
-/* Core palette */
 @define-color bg alpha(#271224, 0.95);
-@define-color bg-alt alpha(#3B2A46, 0.92);
 @define-color surface alpha(#3B2A46, 0.88);
-
 @define-color text #C0CAF5;
 @define-color text-muted alpha(#C0CAF5, 0.75);
-
-/* Accents */
-@define-color accent-blue #7DCFFF;
-@define-color accent-purple #6F8DFF;
 @define-color accent-cyan #2AC3DE;
 @define-color accent-teal #73DACA;
 
-@define-color border alpha(#2AC3DE, 0.20);
-
-/* Global */
+/* Global reset */
 * {
     outline: none;
     border: none;
+    box-shadow: none;
 }
 
-/* Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes forceRepaint {
+    from { opacity: 0.9999; }
+    to   { opacity: 1; }
 }
 
 /* ============================================================================
    CONTROL CENTER
    ============================================================================ */
-
 .control-center {
     background: @bg;
     color: @text;
-
-    border-radius: 16px;
-    border: 1px solid alpha(#2AC3DE, 0.25);
-
+    border-radius: 10px;
+    border: 2px solid @accent-cyan;
     box-shadow:
         0 14px 35px rgba(0, 0, 0, 0.75),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Title */
 .widget-title {
     padding: 16px;
     font-weight: 600;
 }
-
 .widget-title label {
     color: @accent-cyan;
 }
 
 /* ============================================================================
-   NOTIFICATIONS
+   NOTIFICATIONS (CONTROL CENTER)
    ============================================================================ */
+.control-center-notifications,
+.control-center .notification-background,
+.control-center .notification-row,
+.control-center .notification-row:hover,
+.control-center .notification-row:focus,
+.control-center .notification-row:active,
+.control-center .notification-row button,
+.control-center .notification-row button:hover,
+.control-center .notification-row button:focus,
+.control-center .notification-row button:active {
+    background: transparent;
+    -gtk-icon-shadow: none;
+}
 
-.control-center .notification-row .notification-background .notification {
-    background: @surface;
+.control-center .notification-row {
+    margin: 6px 10px;
+    border-radius: 10px;
+    animation: forceRepaint 1ms linear;
+}
 
-    border-radius: 14px;
-    margin: 8px 12px;
+.control-center .notification {
+    background: alpha(#3B2A46, 0.88);
+    border-radius: 10px;
     padding: 10px;
-
-    border: 1px solid alpha(#000000, 0.45);
-
+    border: 1px solid alpha(#2AC3DE, 0.18);
     box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.75),
+        0 10px 22px rgba(0, 0, 0, 0.65),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.floating-notifications .notification {
-    background: @surface;
-
-    border-radius: 14px;
-    border: 1px solid alpha(#2AC3DE, 0.25);
-
+.control-center .notification:hover {
+    background: alpha(#3B2A46, 0.97);
+    border: 1px solid alpha(#2AC3DE, 0.50);
+    border-left: 3px solid @accent-cyan;
     box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.85),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 12px 28px rgba(0, 0, 0, 0.75),
+        0 0 0 1px alpha(#2AC3DE, 0.15);
+}
 
+/* ============================================================================
+   NOTIFICATIONS (FLOATING)
+   ============================================================================ */
+.floating-notifications,
+.floating-notifications .notification-background,
+.floating-notifications .notification-row,
+.floating-notifications .notification-row:hover,
+.floating-notifications .notification-row:focus,
+.floating-notifications .notification-row:active,
+.floating-notifications .notification-row button,
+.floating-notifications .notification-row button:hover,
+.floating-notifications .notification-row button:focus,
+.floating-notifications .notification-row button:active,
+.floating-notifications .notification *,
+.floating-notifications .notification *:hover,
+.floating-notifications .notification box,
+.floating-notifications .notification box:hover,
+.floating-notifications .notification eventbox,
+.floating-notifications .notification eventbox:hover {
+    background: transparent;
+}
+
+.floating-notifications .notification {
+    background: alpha(#3B2A46, 0.90);
+    border-radius: 10px;
+    border: 1px solid alpha(#2AC3DE, 0.25);
+    padding: 10px;
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.75),
+        0 0 0 1px alpha(#2AC3DE, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
     animation: fadeIn 0.2s ease;
 }
 
-/* Hover highlight */
-.control-center .notification-row:hover {
-    background: alpha(#2AC3DE, 0.06);
-    border-radius: 10px;
+.floating-notifications .notification:hover {
+    background: alpha(#3B2A46, 0.97);
+    border: 1px solid alpha(#2AC3DE, 0.50);
+    border-left: 3px solid @accent-cyan;
 }
 
-/* Content */
-.notification-content {
-    padding: 6px;
-}
-
-/* Text */
-.summary {
-    font-weight: 600;
-    color: @accent-blue;
-}
-
-.body {
-    color: @text-muted;
-    font-size: 0.9rem;
-}
-
-.time {
-    color: @text-muted;
-    font-size: 0.75rem;
-}
-
-/* Icons inside notifications */
-.notification widget label {
-    color: @accent-cyan;
+/* ============================================================================
+   NOTIFICATION GROUPS
+   ============================================================================ */
+.notification-group,
+.notification-group-header,
+.notification-group-buttons,
+.notification-group > box,
+.notification-group > revealer,
+.notification-group > revealer > box,
+.notification-group *:hover,
+.notification-group button,
+.notification-group button:hover,
+.notification-group button:focus,
+.notification-group button:active,
+.notification-group-header:hover,
+.notification-group-header button,
+.notification-group-header button:hover {
+    background: transparent;
 }
 
 /* ============================================================================
    CLOSE BUTTON
    ============================================================================ */
-
 .close-button {
     all: unset;
     color: @text-muted;
     padding: 4px;
     border-radius: 6px;
 }
-
 .close-button:hover {
     background: alpha(#73DACA, 0.25);
     color: @text;
@@ -144,119 +166,65 @@
 /* ============================================================================
    WIDGETS
    ============================================================================ */
-
 .widget-buttons-grid {
     padding: 10px;
     margin: 10px;
-
-    border-radius: 14px;
-
+    border-radius: 10px;
     background: @surface;
     border: 1px solid alpha(#2AC3DE, 0.18);
-
     box-shadow:
         0 8px 18px rgba(0, 0, 0, 0.75),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
+.widget-buttons-grid button { color: @text; }
+.widget-buttons-grid button:hover label { color: @accent-cyan; }
 
-/* Buttons */
-.widget-buttons-grid button {
-    color: @text;
-}
-
-.widget-buttons-grid button label {
-    color: @text;
-}
-
-.widget-buttons-grid button:hover label {
-    color: @accent-cyan;
-}
-
-/* Sliders */
 trough {
     border-radius: 10px;
     background: alpha(#000000, 0.45);
 }
-
 trough highlight {
     background: linear-gradient(90deg, #2AC3DE, #73DACA);
     border-radius: 10px;
 }
 
-/* Volume / Backlight */
 .widget-volume,
 .widget-backlight {
     padding: 10px;
     margin: 8px;
-
-    border-radius: 14px;
-
+    border-radius: 10px;
     background: @surface;
     border: 1px solid alpha(#000000, 0.45);
-
     box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.7),
+        0 8px 18px rgba(0, 0, 0, 0.70),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
-
 .widget-volume label,
-.widget-backlight label {
-    color: @accent-cyan;
-}
+.widget-backlight label { color: @accent-cyan; }
 
-/* MPRIS */
 .widget-mpris {
     background: @surface;
-    border-radius: 14px;
-
+    border-radius: 10px;
     padding: 10px;
-
     border: 1px solid alpha(#000000, 0.45);
-
     box-shadow:
         0 8px 18px rgba(0, 0, 0, 0.75),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
-
-.widget-mpris .title {
-    color: @accent-teal;
-    font-weight: 600;
-}
-
-.widget-mpris .artist {
-    color: @text-muted;
-}
-
-.widget-mpris button:hover {
-    color: @accent-cyan;
-}
+.widget-mpris .title  { color: @accent-teal; font-weight: 600; }
+.widget-mpris .artist { color: @text-muted; }
+.widget-mpris button:hover { color: @accent-cyan; }
 
 /* ============================================================================
-   LABELS / TEXT
+   TEXT
    ============================================================================ */
-
 label {
     color: @text;
-    font-family: "CodeNewRoman Nerd Font Propo";
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 14px;
 }
 
-/* Base window */
-window {
-    background-color: @bg;
-}
+window { background-color: @bg; }
 
-/* ============================================================================
-   ICON ACCENTS
-   ============================================================================ */
-
-.summary {
-    color: @accent-blue;
-}
-
-.notification-content .summary {
-    color: @accent-blue;
-}
-
-.notification-content .body {
-    color: @text-muted;
-}
+.summary { color: @accent-cyan; }
+.body    { color: @text-muted; }
