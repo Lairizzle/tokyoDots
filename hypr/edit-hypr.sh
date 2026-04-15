@@ -4,15 +4,15 @@ CONFIG_DIR="$HOME/.config/hypr"
 
 # ---- Mapping: Display Name -> File ----
 declare -A CONFIG_MAP=(
-  ["Main (hyprland.conf)"]="hyprland.conf"
-  ["Monitors"]="monitors.conf"
-  ["Programs"]="programs.conf"
-  ["Autostart"]="autostart.conf"
-  ["Environment"]="env.conf"
-  ["Look & Feel"]="looknfeel.conf"
-  ["Input"]="input.conf"
-  ["Keybinds"]="keybinds.conf"
-  ["Workspaces"]="workspaces.conf"
+  [" Main (hyprland.conf)"]="hyprland.conf"
+  [" Monitors"]="monitors.conf"
+  ["󰏖 Programs"]="programs.conf"
+  ["󰄉 Autostart"]="autostart.conf"
+  ["󰒓 Environment"]="env.conf"
+  ["󰔎 Look & Feel"]="looknfeel.conf"
+  [" Input"]="input.conf"
+  ["󰌌 Keybinds"]="keybinds.conf"
+  ["󰖲 Workspaces"]="workspaces.conf"
 )
 
 # ---- Build menu list ----
@@ -26,10 +26,8 @@ if command -v rofi >/dev/null 2>&1; then
   choice=$(echo -e "$options" | rofi \
     -dmenu \
     -i \
-    -p "Hypr Config" \
+    -p "⚙️ Hypr Config" \
     -font "Jetbrains Mono Nerd Font 10" \
-    -icon-theme "Papirus" \
-    -show-icons \
     -sort \
     -disable-history)
 elif command -v wofi >/dev/null 2>&1; then
@@ -48,7 +46,7 @@ file="${CONFIG_MAP[$choice]}"
 [ -z "$file" ] && exit 1
 
 # ---- Open in terminal with nvim ----
-kitty nvim "$CONFIG_DIR/$file"
+${TERMINAL:-kitty} nvim "$CONFIG_DIR/$file"
 
 # ---- Reload Hyprland after edit ----
 hyprctl reload
