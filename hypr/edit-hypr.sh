@@ -23,7 +23,15 @@ done
 
 # ---- Pick menu tool ----
 if command -v rofi >/dev/null 2>&1; then
-  choice=$(echo -e "$options" | rofi -dmenu -i -p "Hypr Config")
+  choice=$(echo -e "$options" | rofi \
+    -dmenu \
+    -i \
+    -p "Hypr Config" \
+    -font "Jetbrains Mono Nerd Font 10" \
+    -icon-theme "Papirus" \
+    -show-icons \
+    -sort \
+    -disable-history)
 elif command -v wofi >/dev/null 2>&1; then
   choice=$(echo -e "$options" | wofi --dmenu -i -p "Hypr Config")
 else
