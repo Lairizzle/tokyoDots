@@ -5,4 +5,8 @@
 
 //@theme "/home/keith/.config/rofi/themes/tokyonight.rasi"
 
-@theme "/home/keith/.config/rofi/themes/tokyonight.rasi"
+//@theme "/home/keith/.config/rofi/themes/tokyonight.rasi"
+
+//@theme "/home/keith/.config/rofi/themes/midnight-crystal.rasi"
+
+@theme "/home/keith/.config/rofi/themes/midnight-crystal.rasi"

@@ -1,0 +1,256 @@
+/*******************************************************************************
+ * ROFI Color theme — Midnight Crystal
+ * User: Lairizzle
+ * Copyright: Lairizzle
+ * Description: Deep purple-maroon backgrounds with vibrant crystal accents.
+ *              Colors sourced directly from the midnight-crystal Neovim palette.
+ *******************************************************************************/
+
+* {
+    /* ── Midnight Crystal Palette ───────────────────────────────────── */
+
+    /* Backgrounds (dark maroon → purple progression) */
+    bg-editor:       rgba(39, 18, 36, 1);       /* #271224  main editor         */
+    bg-sidebar:      rgba(41, 30, 55, 1);        /* #291E37  floats/sidebar      */
+    bg-statusline:   rgba(59, 42, 70, 1);        /* #3B2A46  status line         */
+    bg-curline:      rgba(54, 27, 48, 1);        /* #361B30  current line        */
+    bg-shadow:       rgba(61, 53, 95, 1);        /* #3D355F  shadows/selections  */
+
+    /* Foreground / text */
+    fg-default:      rgba(192, 202, 245, 1);     /* #C0CAF5  default text        */
+    fg-linenr:       rgba(73, 57, 97, 1);        /* #493961  line numbers / dim  */
+
+    /* Syntax accents */
+    accent-func:     rgba(97, 175, 239, 1);      /* #61AFEF  functions (sky)     */
+    accent-keyword:  rgba(187, 154, 247, 1);     /* #BB9AF7  keywords (violet)   */
+    accent-comment:  rgba(154, 168, 254, 1);     /* #9AA8FE  comments (lavender) */
+    accent-string:   rgba(115, 218, 202, 1);     /* #73daca  strings (teal)      */
+    accent-operator: rgba(125, 207, 255, 1);     /* #7DCFFF  operators (cyan)    */
+    accent-error:    rgba(247, 119, 142, 1);     /* #F7768E  errors/urgent       */
+    accent-warning:  rgba(224, 175, 104, 1);     /* #E0AF68  warnings            */
+    accent-hint:     rgba(187, 154, 247, 1);     /* #BB9AF7  hints               */
+    accent-variable: rgba(111, 140, 223, 1);     /* #6F8CDF  variables (blue)    */
+    accent-param:    rgba(250, 179, 135, 1);     /* #FAB387  parameters (peach)  */
+    accent-prop:     rgba(245, 194, 231, 1);     /* #F5C2E7  properties (pink)   */
+    accent-type:     rgba(42, 195, 222, 1);      /* #2AC3DE  types (turquoise)   */
+
+    /* ── Semantic rofi mappings ─────────────────────────────────────── */
+    foreground:                  @fg-default;
+    background-color:            rgba(0, 0, 0, 0);
+
+    normal-background:           rgba(0, 0, 0, 0);
+    normal-foreground:           @fg-default;
+
+    alternate-normal-background: @bg-sidebar;
+    alternate-normal-foreground: @fg-default;
+
+    selected-normal-background:  @bg-shadow;
+    selected-normal-foreground:  @accent-keyword;
+
+    urgent-background:           @bg-editor;
+    urgent-foreground:           @accent-error;
+
+    alternate-urgent-background: @bg-sidebar;
+    alternate-urgent-foreground: @accent-error;
+
+    selected-urgent-background:  @accent-error;
+    selected-urgent-foreground:  @bg-editor;
+
+    active-background:           @bg-editor;
+    active-foreground:           @accent-func;
+
+    alternate-active-background: @bg-sidebar;
+    alternate-active-foreground: @accent-func;
+
+    selected-active-background:  @bg-shadow;
+    selected-active-foreground:  @accent-func;
+
+    bordercolor:                 @accent-keyword;
+    border-color:                @accent-keyword;
+    separatorcolor:              @bg-statusline;
+
+    red:   @accent-error;
+    blue:  @accent-func;
+
+    spacing: 2;
+}
+
+/*******************************************************************************
+ * Window
+ ******************************************************************************/
+window {
+    background-color: @bg-editor;
+    border:           1px;
+    border-color:     @accent-keyword;
+    border-radius:    14px;
+    padding:          0px;
+    width:            26%;
+    location:         center;
+    anchor:           center;
+}
+
+/*******************************************************************************
+ * Main layout
+ ******************************************************************************/
+mainbox {
+    border:           0px;
+    padding:          12px 10px 10px 10px;
+    spacing:          8px;
+    background-color: transparent;
+}
+
+/*******************************************************************************
+ * Input bar
+ ******************************************************************************/
+inputbar {
+    background-color: @bg-sidebar;
+    border-radius:    10px;
+    padding:          8px 12px;
+    spacing:          4px;
+    text-color:       @fg-default;
+    border:           1px;
+    border-color:     @bg-shadow;
+    children:         [ prompt, textbox-prompt-colon, entry, case-indicator ];
+}
+
+prompt {
+    spacing:          0;
+    text-color:       @accent-keyword;
+    font:             "Sans Bold 10";
+}
+
+textbox-prompt-colon {
+    expand:           false;
+    str:              " › ";
+    margin:           0px 2px 0px 0px;
+    text-color:       @accent-comment;
+}
+
+entry {
+    spacing:          0;
+    text-color:       @fg-default;
+    placeholder:      "Search…";
+    placeholder-color: @fg-linenr;
+}
+
+case-indicator {
+    spacing:          0;
+    text-color:       @fg-linenr;
+}
+
+/*******************************************************************************
+ * List view
+ ******************************************************************************/
+listview {
+    fixed-height:     0;
+    border:           1px 0px 0px 0px;
+    border-color:     @separatorcolor;
+    spacing:          3px;
+    scrollbar:        true;
+    padding:          6px 0px 2px;
+    background-color: transparent;
+    lines:            8;
+}
+
+/*******************************************************************************
+ * Elements
+ ******************************************************************************/
+element {
+    border:           0px;
+    border-radius:    8px;
+    padding:          6px 10px;
+    background-color: transparent;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+/*******************************************************************************
+ * Scrollbar
+ ******************************************************************************/
+scrollbar {
+    width:            4px;
+    border:           0px;
+    handle-width:     8px;
+    handle-color:     @accent-keyword;
+    padding:          0px;
+}
+
+/*******************************************************************************
+ * Message / textbox
+ ******************************************************************************/
+message {
+    border:           1px 0px 0px 0px;
+    border-color:     @separatorcolor;
+    padding:          6px 10px;
+    background-color: transparent;
+}
+
+textbox {
+    text-color: @fg-default;
+}
+
+/*******************************************************************************
+ * Mode switcher
+ ******************************************************************************/
+mode-switcher {
+    border:           1px 0px 0px 0px;
+    border-color:     @separatorcolor;
+    spacing:          4px;
+    padding:          6px 4px 4px;
+    background-color: transparent;
+}
+
+button {
+    padding:          4px 10px;
+    border-radius:    6px;
+    text-color:       @fg-linenr;
+    background-color: transparent;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
