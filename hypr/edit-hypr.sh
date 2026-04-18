@@ -4,23 +4,25 @@ CONFIG_DIR="$HOME/.config/hypr"
 
 # ---- Mapping: Display Name -> File ----
 declare -A CONFIG_MAP=(
-  [" Main (hyprland.conf)"]="hyprland.conf"
-  [" Monitors"]="monitors.conf"
+  ["󰈙 Main (hyprland.conf)"]="hyprland.conf"
+  ["󰍹 Monitors"]="monitors.conf"
   ["󰏖 Programs"]="programs.conf"
   ["󰀻 Shortcuts"]="app-visibility.sh"
   ["󰄉 Autostart"]="autostart.conf"
   ["󰒓 Environment"]="env.conf"
   ["󰔎 Look & Feel"]="looknfeel.conf"
-  [" Input"]="input.conf"
+  ["󰌿 Input"]="input.conf"
   ["󰌌 Keybinds"]="keybinds.conf"
   ["󰖲 Workspaces"]="workspaces.conf"
 )
 
-# ---- Build menu list ----
-options=""
-for key in "${!CONFIG_MAP[@]}"; do
-  options+="$key\n"
-done
+# ---- Build menu list sorted by label (after icon), icons preserved ----
+options=$(
+  for key in "${!CONFIG_MAP[@]}"; do
+    label="${key#* }"
+    printf '%s\t%s\n' "$label" "$key"
+  done | sort -f | cut -f2-
+)
 
 # ---- Pick menu tool ----
 if command -v rofi >/dev/null 2>&1; then
@@ -54,5 +56,3 @@ else
     hyprctl reload
 fi
 
-# ---- Reload Hyprland after edit ----
-hyprctl reload
