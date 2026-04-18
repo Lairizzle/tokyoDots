@@ -7,6 +7,7 @@ declare -A CONFIG_MAP=(
   [" Main (hyprland.conf)"]="hyprland.conf"
   [" Monitors"]="monitors.conf"
   ["󰏖 Programs"]="programs.conf"
+  ["󰀻 Shortcuts"]="app-visibility.sh"
   ["󰄉 Autostart"]="autostart.conf"
   ["󰒓 Environment"]="env.conf"
   ["󰔎 Look & Feel"]="looknfeel.conf"
@@ -45,8 +46,13 @@ file="${CONFIG_MAP[$choice]}"
 # ---- Safety check ----
 [ -z "$file" ] && exit 1
 
-# ---- Open in terminal with nvim ----
-${TERMINAL:-kitty} nvim "$CONFIG_DIR/$file"
+# ---- Run script or open in editor ----
+if [[ "$file" == *.sh ]]; then
+    bash "$CONFIG_DIR/$file"
+else
+    ${TERMINAL:-kitty} nvim "$CONFIG_DIR/$file"
+    hyprctl reload
+fi
 
 # ---- Reload Hyprland after edit ----
 hyprctl reload

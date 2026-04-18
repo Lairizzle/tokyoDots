@@ -110,8 +110,8 @@ window#waybar {
 }
 
 #tray menu {
-  background-color: rgba(41, 30, 55, 0.9);
-  border: 2px solid rgba(125, 207, 255, 0.4);
+  background-color: rgba(39, 18, 36, 0.8);
+  border: 1px solid rgba(187, 154, 247, 1);
   border-radius: 6px;
   color: #C0CAF5;
 }
