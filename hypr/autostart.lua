@@ -1,9 +1,11 @@
 -- autostart.lua
 
-hl.exec_once("waybar")
-hl.exec_once("hyprpaper")
-hl.exec_once("hypridle")
-hl.exec_once("brave")
-hl.exec_once("discord")
-hl.exec_once("nextcloud")
-hl.exec_once("spotify-launcher")
+hl.on("hyprland.start", function()
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("brave")
+    hl.exec_cmd("discord")
+    hl.exec_cmd("nextcloud")
+    hl.exec_cmd("spotify-launcher")
+end)

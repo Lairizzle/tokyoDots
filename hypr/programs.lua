@@ -1,5 +1,5 @@
 -- programs.lua
--- App / command variables (plain Lua locals; use them anywhere in keybinds.lua etc.)
+-- App / command variables (globals so keybinds.lua can access them)
 
 terminal    = "kitty"
 fileManager = "kitty mc"

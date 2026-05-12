@@ -12,12 +12,12 @@ hl.workspace_rule({ workspace = "8",  monitor = "DP-2" })
 hl.workspace_rule({ workspace = "9",  monitor = "DP-2" })
 hl.workspace_rule({ workspace = "10", monitor = "DP-2" })
 
--- Window rules  (replaces old `windowrule =` lines)
+-- Window rules
 -- Debug windows → DP-2 ws 6
 hl.window_rule({
-    match        = { title = ".*DEBUG.*" },
-    monitor      = "DP-2",
-    workspace    = "6",
+    match     = { title = ".*DEBUG.*" },
+    monitor   = "DP-2",
+    workspace = "6",
 })
 
 -- OBS → DP-2 ws 7
@@ -53,5 +53,3 @@ hl.window_rule({
     match        = { fullscreen = true },
     border_color = "rgba(2AC3DEff)",
 })
-
--- Screenshots  (placed here since they relate to workspace/window context)

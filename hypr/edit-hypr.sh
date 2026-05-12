@@ -4,16 +4,16 @@ CONFIG_DIR="$HOME/.config/hypr"
 
 # ---- Mapping: Display Name -> File ----
 declare -A CONFIG_MAP=(
-  ["󰈙 Main (hyprland.conf)"]="hyprland.conf"
-  ["󰍹 Monitors"]="monitors.conf"
-  ["󰏖 Programs"]="programs.conf"
+  ["󰈙 Main (hyprland.lua)"]="hyprland.lua"
+  ["󰍹 Monitors"]="monitors.lua"
+  ["󰏖 Programs"]="programs.lua"
   ["󰀻 Shortcuts"]="app-visibility.sh"
-  ["󰄉 Autostart"]="autostart.conf"
-  ["󰒓 Environment"]="env.conf"
-  ["󰔎 Look & Feel"]="looknfeel.conf"
-  ["󰌿 Input"]="input.conf"
-  ["󰌌 Keybinds"]="keybinds.conf"
-  ["󰖲 Workspaces"]="workspaces.conf"
+  ["󰄉 Autostart"]="autostart.lua"
+  ["󰒓 Environment"]="env.lua"
+  ["󰔎 Look & Feel"]="looknfeel.lua"
+  ["󰌿 Input"]="input.lua"
+  ["󰌌 Keybinds"]="keybinds.lua"
+  ["󰖲 Workspaces"]="workspaces.lua"
 )
 
 # ---- Build menu list sorted by label (after icon), icons preserved ----
